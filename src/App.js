@@ -4,15 +4,13 @@ import { useNavigate, BrowserRouter, Route, Routes} from 'react-router-dom';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import './App.css';
-import ActivityForm from "./ActivityForm"
-import Login from "./Login"
+import LogCallReport from "./LogCallReport"
 
 function App() {
   return (
    <div className="App">
     <Routes> 
-        <Route exact path="/" element={<Login />}/>
-        <Route path="/ActivityForm" element={<ActivityForm />}/>
+        <Route exact path="/" element={<LogCallReport />}/>
       </Routes>
    </div>
   );
