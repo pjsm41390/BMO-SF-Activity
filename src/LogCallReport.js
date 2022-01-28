@@ -12,6 +12,8 @@ let salesforce;
 function LogCallReport() {
   const navigate = useNavigate();
   const [Notes, setNotes] = useState("");
+  const [Disposition, setDisposition] = useState("");
+  const [TimeSpent, setTimeSpent] = useState("");
   const [Objectives, setObjectives] = useState("");
   const [connected, setConnected] = useState(false);
   let [consumerKey, setConsumerKey] = useState("");
@@ -41,7 +43,9 @@ function LogCallReport() {
         {
           T1C_Base__Client__c: "0016s00000Sda8NAAR",
           T1C_Base__Notes__c: Notes,
-          T1C_Base__Subject_Meeting_Objectives__c: Objectives
+          T1C_Base__Subject_Meeting_Objectives__c: Objectives,
+          T1C_Base__Time_Spent_Min__c:TimeSpent,
+          T1C_Base__Call_Disposition__c :Disposition
         }
       );
     })();
@@ -65,17 +69,43 @@ function LogCallReport() {
                 value={Notes}
                 onChange={e => setNotes(e.target.value)}
               />
-            </div>
-
-            <div class="col-md-6">
+              
               <Form.Label>Subject/Objectives</Form.Label>
               <Form.Control
                 value={Objectives}
                 onChange={e => setObjectives(e.target.value)}
               />
+              <Form.Label>Time Spend</Form.Label>
 
+              <Form.Control
+                autoFocus
+                value={TimeSpent}
+                onChange={e => setTimeSpent(e.target.value)}
+              />
+            </div>
+
+            <div class="col-md-6">
+             <div class="form-group">
+              <Form.Label>Call Disposition</Form.Label>
+              <Form.Control
+                autoFocus
+                value={Disposition}
+                onChange={e => setDisposition(e.target.value)}
+              />
+            </div>
               <div class="form-group">
                 <label for="start">Start date:</label>
+                <input
+                  type="date"
+                  id="start"
+                  name="trip-start"
+                  value={"2022-01-28"}
+                  min="2020-01-01"
+                  max="2022-12-31"
+                />
+              </div>
+             <div class="form-group">
+                <label for="start">End date:</label>
                 <input
                   type="date"
                   id="start"
@@ -91,6 +121,7 @@ function LogCallReport() {
                   <option value="Allegro">Allegro</option>
                 </select>
               </div>
+              
             </div>
 
             <Button block size="lg" type="submit">
